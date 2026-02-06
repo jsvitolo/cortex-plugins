@@ -1,0 +1,180 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/cortex-status.sh",
+            "statusMessage": "Loading Cortex status..."
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/check-task-tracking.sh"
+          },
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/check-branch-for-commit.sh"
+          },
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/ensure-main-updated.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/check-task-for-code.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/check-task-for-code.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__cortex__task_create",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/workflow-complexity-check.sh"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/suggest-pr-after-push.sh"
+          },
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/suggest-done-after-merge.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__cortex__brainstorm_create",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/brainstorm-next-steps.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__cortex__brainstorm_select_idea",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/brainstorm-next-steps.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__cortex__brainstorm_add_decision",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/brainstorm-next-steps.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__cortex__brainstorm_to_plan",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/brainstorm-next-steps.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__cortex__highlevel_plan_create",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/plan-next-steps.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__cortex__highlevel_plan_update",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/plan-next-steps.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__cortex__task_create",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/epic-workflow.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__cortex__epic_link_task",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/epic-workflow.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__cortex__task_update",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/task-start-workflow.sh"
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/reinject-context.sh"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/session-diary.sh"
+          }
+        ]
+      }
+    ]
+  }
+}

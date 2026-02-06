@@ -1,0 +1,12 @@
+{
+  "name": "cortex",
+  "description": "Task management, semantic memory, and agent orchestration for Claude Code",
+  "version": "0.1.0",
+  "author": {
+    "name": "Jones Vitolo"
+  },
+  "homepage": "https://github.com/jsvitolo/cortex",
+  "repository": "https://github.com/jsvitolo/cortex-plugins",
+  "license": "MIT",
+  "keywords": ["task-management", "agents", "memory", "orchestration", "workflow"]
+}

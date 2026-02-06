@@ -1,0 +1,21 @@
+{
+  "name": "cortex-plugins",
+  "owner": {
+    "name": "Jones Vitolo",
+    "email": "jones@vitolo.dev"
+  },
+  "metadata": {
+    "description": "Cortex - Task management, semantic memory, and agent orchestration for Claude Code",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "cortex",
+      "source": ".",
+      "description": "Task management, semantic memory, and agent orchestration for Claude Code",
+      "version": "0.1.0",
+      "category": "productivity",
+      "tags": ["task-management", "agents", "memory", "workflow", "orchestration"]
+    }
+  ]
+}
