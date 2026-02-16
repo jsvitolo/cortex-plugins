@@ -1,0 +1,48 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cx status 2>/dev/null || echo 'Cortex: Run cx init to initialize'",
+            "statusMessage": "Loading Cortex status..."
+          }
+        ]
+      },
+      {
+        "matcher": "compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/reinject-context.sh 2>/dev/null || cx status 2>/dev/null",
+            "statusMessage": "Reinjecting Cortex context..."
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/check-task-tracking.sh 2>/dev/null || exit 0"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "Analyze if the user's task is complete based on the conversation. Context: $ARGUMENTS\n\nCheck:\n1. Was there a specific task requested?\n2. Has that task been fully completed?\n3. Are there obvious follow-up actions needed?\n\nIf the task seems complete, respond: {\"ok\": true}\nIf more work is clearly needed, respond: {\"ok\": false, \"reason\": \"Brief explanation of what remains\"}",
+            "timeout": 15
+          }
+        ]
+      }
+    ]
+  }
+}
