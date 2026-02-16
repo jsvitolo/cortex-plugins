@@ -1,21 +1,19 @@
 {
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "cortex-plugins",
+  "version": "0.2.0",
+  "description": "Cortex - Task management, semantic memory, and agent orchestration for Claude Code",
   "owner": {
     "name": "Jones Vitolo",
     "email": "jones@vitolo.dev"
   },
-  "metadata": {
-    "description": "Cortex - Task management, semantic memory, and agent orchestration for Claude Code",
-    "version": "0.2.0"
-  },
   "plugins": [
     {
       "name": "cortex",
-      "source": ".",
+      "source": "./",
       "description": "Task management, semantic memory, and agent orchestration for Claude Code",
       "version": "0.2.0",
-      "category": "productivity",
-      "tags": ["task-management", "agents", "memory", "workflow", "orchestration"]
+      "category": "productivity"
     }
   ]
 }
