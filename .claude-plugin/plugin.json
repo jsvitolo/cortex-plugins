@@ -1,7 +1,7 @@
 {
   "name": "cortex",
   "description": "AI-first development platform with task management and semantic memory. Provides context-aware assistance with tasks, memory search, and workflow automation.",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "author": {
     "name": "Jones Vitolo"
   },
