@@ -1,12 +1,195 @@
 {
   "name": "cortex",
-  "description": "Task management, semantic memory, and agent orchestration for Claude Code",
-  "version": "0.2.0",
+  "description": "AI-first development platform with task management and semantic memory. Provides context-aware assistance with tasks, memory search, and workflow automation.",
+  "version": "0.4.0",
   "author": {
     "name": "Jones Vitolo"
   },
-  "homepage": "https://github.com/jsvitolo/cortex",
-  "repository": "https://github.com/jsvitolo/cortex-plugins",
+  "repository": "https://github.com/jsvitolo/cortex",
   "license": "MIT",
-  "keywords": ["task-management", "agents", "memory", "orchestration", "workflow"]
+  "keywords": [
+    "task-management",
+    "semantic-memory",
+    "memory-search",
+    "ai-workflow",
+    "agent-memory",
+    "context-awareness"
+  ],
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/cortex-status.sh"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/check-branch-for-commit.sh"
+          },
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/check-task-tracking.sh"
+          },
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/ensure-main-updated.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/check-task-for-code.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/check-task-for-code.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__cortex__task_create",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/workflow-complexity-check.sh"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/suggest-pr-after-push.sh"
+          },
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/suggest-done-after-merge.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__cortex__brainstorm_create",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/brainstorm-next-steps.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__cortex__brainstorm_select_idea",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/brainstorm-next-steps.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__cortex__brainstorm_add_decision",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/brainstorm-next-steps.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__cortex__brainstorm_to_plan",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/brainstorm-next-steps.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__cortex__highlevel_plan_create",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/plan-next-steps.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__cortex__highlevel_plan_update",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/plan-next-steps.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__cortex__task_create",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/epic-workflow.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__cortex__epic_link_task",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/epic-workflow.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__cortex__task_update",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/task-start-workflow.sh"
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/reinject-context.sh"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/session-diary.sh"
+          }
+        ]
+      }
+    ]
+  }
 }
