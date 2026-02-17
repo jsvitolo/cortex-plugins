@@ -1,11 +1,12 @@
 ---
 description: Merge PR and move Cortex task to done
-allowed-tools: Bash(gh pr view:*), mcp__cortex__git_merge
+allowed-tools: mcp__cortex__git_merge
 ---
 
 ## Context
 
 - Current branch: !`git branch --show-current`
+- PR for current branch: !`gh pr view --json number,title,state 2>/dev/null || echo "No PR found"`
 
 ## Your Task
 
@@ -13,7 +14,7 @@ Merge the Pull Request using the Cortex MCP tool.
 
 ### Step 1: Verify PR Exists
 
-Run `gh pr view --json number,title,state` to check if a PR exists for the current branch. If no PR exists:
+Check the context above. If no PR exists for the current branch:
 - Inform the user
 - Suggest running `/pr` first to create one
 

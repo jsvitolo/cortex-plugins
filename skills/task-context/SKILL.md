@@ -14,11 +14,11 @@ You MUST track all work through Cortex tasks.
 
 ## Tasks In Progress
 
-!`cx ls -s progress 2>/dev/null`
+!`cx ls -s progress 2>/dev/null || echo "No tasks in progress"`
 
 ## Tasks In Review
 
-!`cx ls -s review 2>/dev/null`
+!`cx ls -s review 2>/dev/null || echo "No tasks in review"`
 
 ## MANDATORY TASK LIFECYCLE
 
@@ -78,7 +78,7 @@ cx done CX-N
 
 ### Recent Memories
 
-!`cx memory ls -n 3 2>/dev/null`
+!`cx memory ls -n 3 2>/dev/null || echo "No memories yet"`
 
 ### Search for Context
 

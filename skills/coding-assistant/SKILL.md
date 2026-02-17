@@ -10,7 +10,7 @@ You MUST use **Cortex MCP tools** (`mcp__cortex__*`) for all operations. Prefer 
 
 ## Current Project Status
 
-!`cx status 2>/dev/null`
+!`cx status 2>/dev/null || echo "Run: cx init"`
 
 ## Active Tasks
 
