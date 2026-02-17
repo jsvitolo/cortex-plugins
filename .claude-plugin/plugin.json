@@ -1,7 +1,7 @@
 {
   "name": "cortex",
-  "description": "AI-first development platform with task management and semantic memory. Provides context-aware assistance with tasks, memory search, and workflow automation.",
-  "version": "0.5.0",
+  "description": "AI-first development platform with task management, semantic memory, and LSP code intelligence. Provides context-aware assistance with tasks, memory search, code navigation, and workflow automation.",
+  "version": "0.6.0",
   "author": {
     "name": "Jones Vitolo"
   },
@@ -13,7 +13,10 @@
     "memory-search",
     "ai-workflow",
     "agent-memory",
-    "context-awareness"
+    "context-awareness",
+    "lsp",
+    "code-intelligence",
+    "code-navigation"
   ],
   "hooks": {
     "SessionStart": [
