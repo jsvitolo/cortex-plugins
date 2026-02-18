@@ -1,7 +1,7 @@
 {
   "name": "cortex",
   "description": "AI-first development platform with task management, semantic memory, and LSP code intelligence. Provides context-aware assistance with tasks, memory search, code navigation, and workflow automation.",
-  "version": "0.9.3",
+  "version": "0.9.4",
   "author": {
     "name": "Jones Vitolo"
   },
