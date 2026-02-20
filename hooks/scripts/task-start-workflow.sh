@@ -5,10 +5,16 @@
 # Read input from stdin
 INPUT=$(cat)
 
-# Extract tool name
+# Extract tool name and action
 TOOL_NAME=$(echo "$INPUT" | jq -r '.tool_name // empty')
+ACTION=$(echo "$INPUT" | jq -r '.tool_input.action // empty')
 
-if [ "$TOOL_NAME" != "mcp__cortex__task_update" ]; then
+# Support both unified tool (mcp__cortex__task with action=update)
+# and legacy tool name (mcp__cortex__task_update)
+if [ "$TOOL_NAME" = "mcp__cortex__task" ] && [ "$ACTION" != "update" ]; then
+    exit 0
+fi
+if [ "$TOOL_NAME" != "mcp__cortex__task" ] && [ "$TOOL_NAME" != "mcp__cortex__task_update" ]; then
     exit 0
 fi
 
@@ -54,11 +60,13 @@ EOF
     done)
         # macOS native notification
         if command -v osascript &> /dev/null; then
-            TASK_TITLE=$(echo "$INPUT" | jq -r '.tool_result // empty' | jq -r '.title // empty' 2>/dev/null)
+            TASK_TITLE=$(echo "$INPUT" | jq -r '.tool_result.title // empty' 2>/dev/null)
             if [ -z "$TASK_TITLE" ] || [ "$TASK_TITLE" = "null" ]; then
                 TASK_TITLE="$TASK_ID"
             fi
-            osascript -e "display notification \"${TASK_TITLE}\" with title \"Cortex\" subtitle \"Task ${TASK_ID} concluída!\" sound name \"Glass\"" &>/dev/null &
+            osascript <<NOTIFY &>/dev/null &
+display notification "${TASK_TITLE}" with title "Cortex" subtitle "Task ${TASK_ID} done!" sound name "Glass"
+NOTIFY
         fi
 
         cat << EOF

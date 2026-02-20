@@ -194,7 +194,7 @@
         ]
       },
       {
-        "matcher": "mcp__cortex__task_update",
+        "matcher": "mcp__cortex__task",
         "hooks": [
           {
             "type": "command",
