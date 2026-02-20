@@ -52,6 +52,15 @@ EOF
 EOF
         ;;
     done)
+        # macOS native notification
+        if command -v osascript &> /dev/null; then
+            TASK_TITLE=$(echo "$INPUT" | jq -r '.tool_result // empty' | jq -r '.title // empty' 2>/dev/null)
+            if [ -z "$TASK_TITLE" ] || [ "$TASK_TITLE" = "null" ]; then
+                TASK_TITLE="$TASK_ID"
+            fi
+            osascript -e "display notification \"${TASK_TITLE}\" with title \"Cortex\" subtitle \"Task ${TASK_ID} concluída!\" sound name \"Glass\"" &>/dev/null &
+        fi
+
         cat << EOF
 {
   "hookSpecificOutput": {
