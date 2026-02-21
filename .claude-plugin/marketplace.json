@@ -1,7 +1,7 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "cortex-plugins",
-  "version": "0.9.9",
+  "version": "1.0.0",
   "description": "Cortex - AI-first development platform with task management, semantic memory, and LSP code intelligence",
   "owner": {
     "name": "Jones Vitolo",
@@ -12,7 +12,7 @@
       "name": "cortex",
       "source": "./",
       "description": "AI-first development platform with task management, semantic memory, and LSP code intelligence",
-      "version": "0.9.9",
+      "version": "1.0.0",
       "category": "productivity"
     }
   ]
