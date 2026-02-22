@@ -13,7 +13,7 @@ Educational code review that ensures you understand the changes before approving
 ## Context
 
 - Current branch: !`git branch --show-current`
-- PR status: !`gh pr view --json number,title,state 2>/dev/null || echo "No PR found for current branch"`
+- PR status: !`gh pr view --json number,title,state 2>/dev/null`
 
 ## Arguments
 
