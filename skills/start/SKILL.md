@@ -1,6 +1,6 @@
 ---
-description: Start working on a task - creates branch and moves to progress
-allowed-tools: mcp__cortex__git_branch, mcp__cortex__task_update, mcp__cortex__task_get
+description: Start working on a task - creates branch, enters worktree and moves to progress
+allowed-tools: mcp__cortex__git_branch, mcp__cortex__task_update, mcp__cortex__task_get, EnterWorktree
 argument-hint: CX-N
 ---
 
@@ -38,14 +38,28 @@ This single command will:
 mcp__cortex__task_update(id="$ARGUMENTS", status="progress")
 ```
 
-### Step 4: Report Success
+### Step 4: Enter worktree
+
+Use Claude Code's native EnterWorktree tool to create and enter an isolated worktree:
+
+```
+EnterWorktree(name="cx-N-slug-of-title")
+```
+
+Where `name` is the task ID + slugified title in lowercase (e.g., `cx-266-migrate-worktrees`).
+
+This creates `.claude/worktrees/<name>/` and switches the current session into the isolated worktree.
+
+### Step 5: Report Success
 
 Show:
 - Task title and ID
 - Branch name created
+- Worktree path entered
 - Next steps hint: "Ready to code! When done, run /pr"
 
 **IMPORTANT:**
 - The git_branch tool handles updating main automatically
 - Task status is updated AFTER branch is created successfully
 - If branch creation fails, don't update task status
+- EnterWorktree creates `.claude/worktrees/<name>/` automatically
