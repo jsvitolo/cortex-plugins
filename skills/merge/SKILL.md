@@ -1,12 +1,12 @@
 ---
 description: Merge PR and move Cortex task to done
-allowed-tools: mcp__cortex__git_merge
+allowed-tools: mcp__cortex__git_merge, Bash(gh pr view:*), Bash(git branch:*)
 ---
 
 ## Context
 
 - Current branch: !`git branch --show-current`
-- PR for current branch: !`gh pr view --json number,title,state 2>/dev/null || echo "No PR found"`
+- PR for current branch: !`gh pr view --json number,title,state 2>/dev/null`
 
 ## Your Task
 
