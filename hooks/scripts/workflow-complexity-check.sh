@@ -5,11 +5,12 @@
 # Read input from stdin
 INPUT=$(cat)
 
-# Extract tool name
+# Extract tool name and action
 TOOL_NAME=$(echo "$INPUT" | jq -r '.tool_name // empty')
+ACTION=$(echo "$INPUT" | jq -r '.tool_input.action // empty')
 
 # Only check for task creation
-if [ "$TOOL_NAME" != "mcp__cortex__task_create" ]; then
+if [ "$TOOL_NAME" != "mcp__cortex__task" ] || [ "$ACTION" != "create" ]; then
     exit 0
 fi
 

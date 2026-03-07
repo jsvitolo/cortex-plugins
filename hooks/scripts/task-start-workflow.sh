@@ -9,12 +9,8 @@ INPUT=$(cat)
 TOOL_NAME=$(echo "$INPUT" | jq -r '.tool_name // empty')
 ACTION=$(echo "$INPUT" | jq -r '.tool_input.action // empty')
 
-# Support both unified tool (mcp__cortex__task with action=update)
-# and legacy tool name (mcp__cortex__task_update)
-if [ "$TOOL_NAME" = "mcp__cortex__task" ] && [ "$ACTION" != "update" ]; then
-    exit 0
-fi
-if [ "$TOOL_NAME" != "mcp__cortex__task" ] && [ "$TOOL_NAME" != "mcp__cortex__task_update" ]; then
+# Only handle task update calls
+if [ "$TOOL_NAME" != "mcp__cortex__task" ] || [ "$ACTION" != "update" ]; then
     exit 0
 fi
 
@@ -32,7 +28,7 @@ case "$NEW_STATUS" in
 {
   "hookSpecificOutput": {
     "hookEventName": "PostToolUse",
-    "additionalContext": "Task $TASK_ID started!\n\nYou're on $CURRENT_BRANCH. Create a feature branch:\n  git checkout -b feat/${TASK_ID,,}-description\n\nOr use: mcp__cortex__git_branch(task_id=\"$TASK_ID\")"
+    "additionalContext": "Task $TASK_ID started!\n\nYou're on $CURRENT_BRANCH. Create a feature branch:\n  git checkout -b feat/${TASK_ID,,}-description\n\nOr use: mcp__cortex__git(action=\"branch\", task_id=\"$TASK_ID\")"
   }
 }
 EOF
