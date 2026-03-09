@@ -3,7 +3,7 @@ name: sync
 description: Sync task progress to linked GitHub Issue
 argument-hint: [task-id] (optional, auto-detects current task)
 user-invocable: true
-allowed-tools: Bash(cx *), Bash(gh *), mcp__cortex__task_get, mcp__cortex__task_update, mcp__cortex__task_list
+allowed-tools: Bash(cx *), Bash(gh *), mcp__cortex__task
 ---
 
 ## Context
@@ -28,7 +28,7 @@ Use the provided task ID directly.
 1. Try to extract from current branch name (`feat/cx-N-*`, `fix/cx-N-*`, `chore/cx-N-*`)
 2. If no match, list tasks in progress:
    ```
-   mcp__cortex__task_list(status="progress")
+   mcp__cortex__task(action="list", status="progress")
    ```
 3. If exactly one task is in progress, use it
 4. If multiple tasks, show the list and ask the user which one to sync
@@ -36,7 +36,7 @@ Use the provided task ID directly.
 ### Step 2: Get Task Details
 
 ```
-mcp__cortex__task_get(id="CX-N")
+mcp__cortex__task(action="get", id="CX-N")
 ```
 
 Check if the task has a `github_issue` field set.

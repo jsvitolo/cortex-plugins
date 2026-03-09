@@ -26,7 +26,7 @@ $ARGUMENTS
 ### Step 1: Create the brainstorm session
 
 ```
-mcp__cortex__brainstorm_create(title="$ARGUMENTS", description="Exploring approaches for: $ARGUMENTS")
+mcp__cortex__brainstorm(action="create", title="$ARGUMENTS", description="Exploring approaches for: $ARGUMENTS")
 ```
 
 This returns a brainstorm ID (BS-N).
@@ -38,43 +38,43 @@ Help the user explore by:
 1. **Suggesting initial ideas** based on the title
 2. **Adding ideas** as the user discusses options:
    ```
-   mcp__cortex__brainstorm_add_idea(brainstorm_id="BS-N", content="Idea description")
+   mcp__cortex__brainstorm(action="add_idea", id="BS-N", content="Idea description")
    ```
 
 3. **Adding pros/cons** to each idea:
    ```
-   mcp__cortex__brainstorm_add_idea(brainstorm_id="BS-N", content="OAuth2", pros=["Industry standard", "Delegated auth"], cons=["Complex setup", "External dependency"])
+   mcp__cortex__brainstorm(action="add_idea", id="BS-N", content="OAuth2", pros=["Industry standard", "Delegated auth"], cons=["Complex setup", "External dependency"])
    ```
 
 4. **Voting** on ideas as preferences emerge:
    ```
-   mcp__cortex__brainstorm_vote_idea(idea_id="<id>", vote=1)  # +1 or -1
+   mcp__cortex__brainstorm(action="vote_idea", idea_id="<id>", vote=1)  # +1 or -1
    ```
 
 5. **Selecting** the winning ideas:
    ```
-   mcp__cortex__brainstorm_select_idea(idea_id="<id>", selected=true)
+   mcp__cortex__brainstorm(action="select_idea", idea_id="<id>", selected=true)
    ```
 
 ### Step 3: Capture decisions
 
 As the user makes decisions, record them:
 ```
-mcp__cortex__brainstorm_add_decision(brainstorm_id="BS-N", decision="We will use OAuth2 with Google provider")
+mcp__cortex__brainstorm(action="add_decision", id="BS-N", decision="We will use OAuth2 with Google provider")
 ```
 
 ### Step 4: Add references (optional)
 
 If external resources are discussed:
 ```
-mcp__cortex__brainstorm_add_ref(brainstorm_id="BS-N", url="https://...", title="OAuth2 Best Practices")
+mcp__cortex__brainstorm(action="add_ref", id="BS-N", url="https://...", title="OAuth2 Best Practices")
 ```
 
 ### Step 5: Convert to Plan (when ready)
 
 When the user is ready to move forward:
 ```
-mcp__cortex__brainstorm_to_plan(brainstorm_id="BS-N")
+mcp__cortex__brainstorm(action="to_plan", id="BS-N")
 ```
 
 This creates a Plan (PL-N) with:

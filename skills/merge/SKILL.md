@@ -1,6 +1,6 @@
 ---
 description: Merge PR and move Cortex task to done
-allowed-tools: mcp__cortex__git_merge, Bash(gh pr view:*), Bash(git branch:*)
+allowed-tools: mcp__cortex__git, Bash(gh pr view:*), Bash(git branch:*)
 ---
 
 ## Context
@@ -23,7 +23,7 @@ Check the context above. If no PR exists for the current branch:
 Use the Cortex MCP tool to merge:
 
 ```
-mcp__cortex__git_merge()
+mcp__cortex__git(action="merge")
 ```
 
 This single command will:

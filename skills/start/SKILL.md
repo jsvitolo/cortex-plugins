@@ -1,6 +1,6 @@
 ---
 description: Start working on a task - creates branch, enters worktree and moves to progress
-allowed-tools: mcp__cortex__git_branch, mcp__cortex__task_update, mcp__cortex__task_get, EnterWorktree
+allowed-tools: mcp__cortex__git, mcp__cortex__task, EnterWorktree
 argument-hint: CX-N
 ---
 
@@ -14,7 +14,7 @@ Start working on a Cortex task using MCP tools.
 
 First, get the task details:
 ```
-mcp__cortex__task_get(id="$ARGUMENTS")
+mcp__cortex__task(action="get", id="$ARGUMENTS")
 ```
 
 If task not found, inform the user.
@@ -24,7 +24,7 @@ If task not found, inform the user.
 Use the Cortex MCP tool to create a feature branch:
 
 ```
-mcp__cortex__git_branch(task_id="$ARGUMENTS")
+mcp__cortex__git(action="branch", task_id="$ARGUMENTS")
 ```
 
 This single command will:
@@ -35,7 +35,7 @@ This single command will:
 ### Step 3: Move Task to Progress
 
 ```
-mcp__cortex__task_update(id="$ARGUMENTS", status="progress")
+mcp__cortex__task(action="update", id="$ARGUMENTS", status="progress")
 ```
 
 ### Step 4: Enter worktree

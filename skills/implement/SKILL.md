@@ -32,19 +32,19 @@ $ARGUMENTS
 
 If a task ID (CX-N) was provided, get the task:
 ```
-mcp__cortex__task_get(id="CX-N")
+mcp__cortex__task(action="get", id="CX-N")
 ```
 
 If a description was provided, create a task first:
 ```
-mcp__cortex__task_create(title="<description>", type="feature|bug|chore")
+mcp__cortex__task(action="create", title="<description>", type="feature|bug|chore")
 ```
 
 ### Step 2: Start the agent workflow
 
 Spawn the research agent to begin:
 ```
-mcp__cortex__agent_spawn(task_id="CX-N", agent_name="research")
+mcp__cortex__agent(action="spawn", task_id="CX-N", agent_name="research")
 ```
 
 This returns a **prompt** and **session_id**.
@@ -92,7 +92,7 @@ Execute each agent's prompt using the Task tool until workflow is complete.
 
 Check agent sessions:
 ```
-mcp__cortex__agent_sessions(task_id="CX-N")
+mcp__cortex__agent(action="sessions", task_id="CX-N")
 ```
 
 ## Important Notes

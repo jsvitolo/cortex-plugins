@@ -1,6 +1,6 @@
 ---
 description: Create PR and move Cortex task to review
-allowed-tools: Bash(git status:*), Bash(git add:*), Bash(git commit:*), mcp__cortex__git_pr
+allowed-tools: Bash(git status:*), Bash(git add:*), Bash(git commit:*), mcp__cortex__git
 ---
 
 ## Context
@@ -24,7 +24,7 @@ If there are uncommitted changes (from git status):
 Use the Cortex MCP tool to create the PR:
 
 ```
-mcp__cortex__git_pr()
+mcp__cortex__git(action="pr")
 ```
 
 This single command will:

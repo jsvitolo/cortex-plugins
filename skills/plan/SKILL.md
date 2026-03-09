@@ -32,7 +32,7 @@ Can be:
 
 Convert the brainstorm to a plan:
 ```
-mcp__cortex__brainstorm_to_plan(brainstorm_id="BS-N")
+mcp__cortex__brainstorm(action="to_plan", id="BS-N")
 ```
 
 This creates a new plan with the brainstorm's selected ideas and decisions.
@@ -41,14 +41,14 @@ This creates a new plan with the brainstorm's selected ideas and decisions.
 
 Get the existing plan:
 ```
-mcp__cortex__highlevel_plan_get(id="PL-N")
+mcp__cortex__highlevel_plan(action="get", id="PL-N")
 ```
 
 ### If argument is a title (new plan)
 
 Create a new plan:
 ```
-mcp__cortex__highlevel_plan_create(title="$ARGUMENTS")
+mcp__cortex__highlevel_plan(action="create", title="$ARGUMENTS")
 ```
 
 ### Step 2: Help write the plan content
@@ -99,21 +99,21 @@ How we will implement this:
 
 Update the plan content:
 ```
-mcp__cortex__highlevel_plan_update(id="PL-N", content="<markdown content>")
+mcp__cortex__highlevel_plan(action="update", id="PL-N", content="<markdown content>")
 ```
 
 ### Step 3: Link to epics (optional)
 
 If this plan relates to an epic:
 ```
-mcp__cortex__highlevel_plan_link_epic(plan_id="PL-N", epic_id="CX-E")
+mcp__cortex__highlevel_plan(action="link_epic", id="PL-N", epic_id="CX-E")
 ```
 
 ### Step 4: Review and approve
 
 When the plan is ready:
 ```
-mcp__cortex__highlevel_plan_update(id="PL-N", status="approved")
+mcp__cortex__highlevel_plan(action="update", id="PL-N", status="approved")
 ```
 
 ## Example Session

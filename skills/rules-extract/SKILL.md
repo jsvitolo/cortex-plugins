@@ -65,7 +65,8 @@ Ask the user the following questions one at a time, providing sensible defaults:
 Call the `rules_extract` MCP tool with the configured options:
 
 ```
-mcp__cortex__rules_extract(
+mcp__cortex__business_rule(
+  action="rules_extract",
   path="<path>",
   scope="<scope>",
   categories=["<cat1>", "<cat2>"],
@@ -87,10 +88,11 @@ The extraction returns structured code chunks with pattern hints. For each chunk
 
 1. **Analyze** the code and pattern hints to identify business rules
 2. **Determine** if it is a real business rule (not just an implementation detail)
-3. **For each identified rule**, call `business_rule_save`:
+3. **For each identified rule**, call `business_rule` save:
 
 ```
-mcp__cortex__business_rule_save(
+mcp__cortex__business_rule(
+  action="save",
   title="<descriptive title>",
   description="<what the rule enforces>",
   category="<validation|calculation|flow|permission|constraint|state_transition|integration>",
@@ -113,7 +115,8 @@ mcp__cortex__business_rule_save(
 If the user chose markdown or both output:
 
 ```
-mcp__cortex__business_rule_catalog(
+mcp__cortex__business_rule(
+  action="catalog",
   output_dir="docs/business-rules",
   min_confidence=0
 )

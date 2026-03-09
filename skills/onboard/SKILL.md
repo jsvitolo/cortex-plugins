@@ -3,7 +3,7 @@ name: onboard
 description: Analyze project and save context as Cortex memories (stack, architecture, database, testing)
 argument-hint: [--refresh] [--only stack|architecture|database|testing] [--dry-run]
 user-invocable: true
-allowed-tools: Bash(ls *), Bash(cat *), Bash(head *), Bash(find *), Bash(wc *), Read, Glob, Grep, mcp__cortex__memory_save, mcp__cortex__memory_list
+allowed-tools: Bash(ls *), Bash(cat *), Bash(head *), Bash(find *), Bash(wc *), Read, Glob, Grep, mcp__cortex__memory
 ---
 
 # Project Onboarding
@@ -50,7 +50,7 @@ Gather:
 
 **Save as:**
 ```
-mcp__cortex__memory_save(
+mcp__cortex__memory(action="save", 
   type="implementation",
   title="project:stack",
   content="..."
@@ -67,7 +67,7 @@ Gather:
 
 **Save as:**
 ```
-mcp__cortex__memory_save(
+mcp__cortex__memory(action="save", 
   type="architecture",
   title="project:structure",
   content="..."
@@ -95,7 +95,7 @@ If database exists, gather:
 
 **Save as:**
 ```
-mcp__cortex__memory_save(
+mcp__cortex__memory(action="save", 
   type="implementation",
   title="project:database",
   content="..."
@@ -113,7 +113,7 @@ Gather:
 
 **Save as:**
 ```
-mcp__cortex__memory_save(
+mcp__cortex__memory(action="save", 
   type="testing",
   title="project:testing",
   content="..."
@@ -130,7 +130,7 @@ Create a summary with:
 
 **Save as:**
 ```
-mcp__cortex__memory_save(
+mcp__cortex__memory(action="save", 
   type="context",
   title="project:overview",
   content="..."
@@ -277,7 +277,7 @@ Dica: Use "cx memory search 'como testar'" para verificar.
 ### Step 5: Handle Flags
 
 **If `--refresh`:**
-- Check existing memories with `mcp__cortex__memory_list`
+- Check existing memories with `mcp__cortex__memory(action="list")`
 - Update content instead of creating duplicates
 
 **If `--only <type>`:**
@@ -286,7 +286,7 @@ Dica: Use "cx memory search 'como testar'" para verificar.
 
 **If `--dry-run`:**
 - Show what would be saved
-- Do NOT call `mcp__cortex__memory_save`
+- Do NOT call `mcp__cortex__memory(action="save")`
 - Format output as preview
 
 ## Notes
