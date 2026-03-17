@@ -6,8 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/cortex-status.sh",
-            "statusMessage": "Loading Cortex status..."
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/cortex-status.sh"
           }
         ]
       }
@@ -18,15 +17,19 @@
         "hooks": [
           {
             "type": "command",
-            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/check-task-tracking.sh"
-          },
-          {
-            "type": "command",
             "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/check-branch-for-commit.sh"
           },
           {
             "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/check-task-tracking.sh"
+          },
+          {
+            "type": "command",
             "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/ensure-main-updated.sh"
+          },
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/validate-commit-message.sh"
           }
         ]
       },
@@ -49,7 +52,7 @@
         ]
       },
       {
-        "matcher": "mcp__cortex__task",
+        "matcher": "mcp__cortex__task_create",
         "hooks": [
           {
             "type": "command",
@@ -69,6 +72,24 @@
     ],
     "PostToolUse": [
       {
+        "matcher": "Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/lsp-reindex-on-edit.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/lsp-reindex-on-edit.sh"
+          }
+        ]
+      },
+      {
         "matcher": "Bash",
         "hooks": [
           {
@@ -82,7 +103,7 @@
         ]
       },
       {
-        "matcher": "mcp__cortex__brainstorm",
+        "matcher": "mcp__cortex__brainstorm_create",
         "hooks": [
           {
             "type": "command",
@@ -91,7 +112,34 @@
         ]
       },
       {
-        "matcher": "mcp__cortex__highlevel_plan",
+        "matcher": "mcp__cortex__brainstorm_select_idea",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/brainstorm-next-steps.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__cortex__brainstorm_add_decision",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/brainstorm-next-steps.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__cortex__brainstorm_to_plan",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/brainstorm-next-steps.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__cortex__highlevel_plan_create",
         "hooks": [
           {
             "type": "command",
@@ -100,24 +148,38 @@
         ]
       },
       {
-        "matcher": "mcp__cortex__task",
+        "matcher": "mcp__cortex__highlevel_plan_update",
         "hooks": [
           {
             "type": "command",
-            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/epic-workflow.sh"
-          },
-          {
-            "type": "command",
-            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/task-start-workflow.sh"
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/plan-next-steps.sh"
           }
         ]
       },
       {
-        "matcher": "mcp__cortex__epic",
+        "matcher": "mcp__cortex__task_create",
         "hooks": [
           {
             "type": "command",
             "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/epic-workflow.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__cortex__epic_link_task",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/epic-workflow.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__cortex__task",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/task-start-workflow.sh"
           }
         ]
       }
@@ -129,6 +191,17 @@
           {
             "type": "command",
             "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/reinject-context.sh"
+          }
+        ]
+      }
+    ],
+    "PostCompact": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cx hooks post-compact"
           }
         ]
       }

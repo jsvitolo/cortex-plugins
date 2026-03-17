@@ -1,5 +1,7 @@
 ---
+name: start
 description: Start working on a task - creates branch, enters worktree and moves to progress
+user-invocable: true
 allowed-tools: mcp__cortex__git, mcp__cortex__task, EnterWorktree
 argument-hint: CX-N
 ---

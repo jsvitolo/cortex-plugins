@@ -1,5 +1,7 @@
 ---
+name: merge
 description: Merge PR and move Cortex task to done
+user-invocable: true
 allowed-tools: mcp__cortex__git, Bash(gh pr view:*), Bash(git branch:*)
 ---
 

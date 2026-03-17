@@ -1,5 +1,7 @@
 ---
+name: pr
 description: Create PR and move Cortex task to review
+user-invocable: true
 allowed-tools: Bash(git status:*), Bash(git add:*), Bash(git commit:*), mcp__cortex__git
 ---
 
