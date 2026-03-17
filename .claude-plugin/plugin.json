@@ -214,6 +214,17 @@
         ]
       }
     ],
+    "PostCompact": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cx hooks post-compact"
+          }
+        ]
+      }
+    ],
     "Stop": [
       {
         "matcher": "",
