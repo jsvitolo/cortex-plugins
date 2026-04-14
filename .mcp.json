@@ -1,8 +1,8 @@
 {
   "mcpServers": {
     "cortex": {
-      "command": "cx",
-      "args": ["mcp", "serve"]
+      "command": "bash",
+      "args": ["-c", "while true; do cx mcp serve 2>>/tmp/cortex-mcp.log; sleep 1; done"]
     }
   }
 }
