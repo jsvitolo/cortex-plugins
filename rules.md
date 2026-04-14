@@ -54,7 +54,53 @@ Always prefer Cortex MCP tools over Bash commands:
 - Tasks are created via MCP tools, not internal Claude tasks
 - Status updates go through MCP: `mcp__cortex__task(action="update", status="progress|done")`
 
-## Rule 4: Learnings System - Continuous Improvement
+## Rule 4: Code Graph — Use for Code Understanding
+
+If the project has a built code graph (`codegraph:status` shows nodes > 0), use it:
+
+### Research phase — FIRST STEP:
+```
+# Ultra-compact overview (~100 tokens) — ALWAYS call this first
+mcp__cortex__codegraph(action="context", task="what you are doing")
+
+# Find symbols by name (substring match)
+mcp__cortex__codegraph(action="query", name="SymbolName")
+
+# Understand dependencies
+mcp__cortex__codegraph(action="edges", node_id="cn-xxx")
+
+# Check blast radius before changes
+mcp__cortex__codegraph(action="impact", node_id="cn-xxx")
+```
+
+### Before PR / code review:
+```
+# Get review hints
+mcp__cortex__codegraph(action="review_hints", since="HEAD")
+
+# Risk-scored changes
+mcp__cortex__codegraph(action="detect_changes", since="HEAD")
+```
+
+### Build / maintain the graph:
+```
+mcp__cortex__codegraph(action="build")     # first time (full)
+mcp__cortex__codegraph(action="update")    # after changes (incremental)
+```
+
+### Additional analysis:
+```
+mcp__cortex__codegraph(action="dead_code")          # unreferenced symbols
+mcp__cortex__codegraph(action="communities")         # module structure
+mcp__cortex__codegraph(action="refactor")            # refactoring suggestions
+mcp__cortex__codegraph(action="rename_preview", node_id="cn-xxx", new_name="NewName")
+mcp__cortex__codegraph(action="visualize")           # D3.js HTML graph
+mcp__cortex__codegraph(action="wiki")                # markdown docs
+```
+
+Supported languages: Go, Elixir, TypeScript, Rust, Python
+
+## Rule 5: Learnings System - Continuous Improvement
 
 Cortex has a learnings system that automatically extracts success/failure patterns.
 
