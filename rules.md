@@ -100,6 +100,28 @@ mcp__cortex__codegraph(action="wiki")                # markdown docs
 
 Supported languages: Go, Elixir, TypeScript, Rust, Python
 
+## Rule 5: Style Guide — Follow team conventions
+
+If the project has a style guide configured (`style_guide:status` shows configured), agents MUST use it:
+
+### Before writing code:
+```
+# Search for relevant conventions
+mcp__cortex__style_guide(action="search", query="naming conventions")
+mcp__cortex__style_guide(action="search", query="error handling")
+mcp__cortex__style_guide(action="search", query="testing patterns")
+```
+
+### Sync and status:
+```
+mcp__cortex__style_guide(action="sync")            # full sync from repo
+mcp__cortex__style_guide(action="sync_if_needed")  # only if cooldown expired
+mcp__cortex__style_guide(action="status")           # config + stats
+mcp__cortex__style_guide(action="rules")            # list generated rules
+```
+
+Style guide rules in `.claude/rules/` are loaded automatically by Claude Code.
+
 ## Rule 5: Learnings System - Continuous Improvement
 
 Cortex has a learnings system that automatically extracts success/failure patterns.

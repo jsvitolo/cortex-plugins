@@ -1,7 +1,7 @@
 {
   "name": "cortex",
   "description": "AI-first development platform with task management, semantic memory, code graph analysis, and LSP code intelligence. Provides context-aware assistance with tasks, memory search, code navigation, impact analysis, and workflow automation.",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "author": {
     "name": "Jones Vitolo"
   },
@@ -32,6 +32,10 @@
           {
             "type": "command",
             "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/cortex-status.sh"
+          },
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/style-guide-sync.sh"
           }
         ]
       }
