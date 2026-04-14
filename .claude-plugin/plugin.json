@@ -1,7 +1,7 @@
 {
   "name": "cortex",
-  "description": "AI-first development platform with task management, semantic memory, and LSP code intelligence. Provides context-aware assistance with tasks, memory search, code navigation, and workflow automation.",
-  "version": "1.0.5",
+  "description": "AI-first development platform with task management, semantic memory, code graph analysis, and LSP code intelligence. Provides context-aware assistance with tasks, memory search, code navigation, impact analysis, and workflow automation.",
+  "version": "1.0.6",
   "author": {
     "name": "Jones Vitolo"
   },
@@ -16,7 +16,13 @@
     "context-awareness",
     "lsp",
     "code-intelligence",
-    "code-navigation"
+    "code-navigation",
+    "codegraph",
+    "tree-sitter",
+    "code-analysis",
+    "impact-analysis",
+    "dead-code-detection",
+    "community-detection"
   ],
   "hooks": {
     "SessionStart": [
